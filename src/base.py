@@ -21,3 +21,10 @@ def no_decomposition_model(instance):
     
 
     return model
+
+def solve_no_decomposition(instance):
+    model = no_decomposition_model(instance)
+    model.optimize()
+
+    y_values = [model.getAttr('X', model.getVars())[i] for i in range(len(model.getVars())) if 'y' in model.getVars()[i].varName]
+    return model.objVal, y_values
