@@ -22,3 +22,14 @@ class Instance():
     
     def __repr__(self):
         return self.__str__()
+    
+    def extend_instance(self, new_n):
+        d = new_n // 2
+        f = [0] * new_n
+        c = [0] * new_n
+        f[0] = 7
+        c[0] = 8
+        for i in range(1, new_n):
+            f[i] = f[i-1]*f[0] % 159
+            c[i] = c[i-1] + c[0] % 61
+        return Instance(new_n, f, c, d)
